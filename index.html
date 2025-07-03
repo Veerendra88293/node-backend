@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tokyo Mikey ltd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f7f9fa;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 700px;
+      margin: 32px auto 0 auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+      padding: 22px 14px 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    h1 {
+      text-align: center;
+      color: #1976d2;
+      font-size: 1.5em;
+      margin: 0 0 10px 0;
+      letter-spacing: 0.5px;
+    }
+    .input-row, .company-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 0;
+      flex-wrap: wrap;
+    }
+    .input-row input, .input-row select, .company-row input, .company-row select {
+      flex: 1 1 120px;
+      min-width: 0;
+      padding: 8px 10px;
+      border: 1px solid #cfd8dc;
+      border-radius: 5px;
+      font-size: 1rem;
+      background: #f5f7fa;
+      transition: border 0.2s;
+      box-sizing: border-box;
+    }
+    .input-row input:focus, .input-row select:focus, .company-row input:focus, .company-row select:focus {
+      border: 1.5px solid #1976d2;
+      outline: none;
+      background: #fff;
+    }
+    .input-row button, .company-row button {
+      padding: 8px 14px;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex: 0 0 auto;
+      min-width: 70px;
+    }
+    .input-row button:hover, .company-row button:hover {
+      background: #1256a3;
+    }
+    #dpid-list {
+      margin-bottom: 0;
+      background: #f1f8e9;
+      border-radius: 6px;
+      padding: 8px 10px;
+      min-height: 28px;
+      font-size: 0.97rem;
+      color: #37474f;
+      word-break: break-word;
+    }
+    .company-section {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    #result {
+      margin-top: 0;
+      background: #fffde7;
+      border-radius: 8px;
+      padding: 14px 10px;
+      min-height: 36px;
+      font-size: 1.03rem;
+      color: #263238;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+      word-break: break-word;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1976d2;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 0 0 14px 14px;
+      margin-bottom: 20px;
+    }
+    .navbar-title {
+      font-size: 1.2em;
+      font-weight: 600;
+    }
+    .navbar-links {
+      display: flex;
+      gap: 16px;
+    }
+    .navbar-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      transition: color 0.2s;
+    }
+    .navbar-links a:hover {
+      color: #ffeb3b;
+    }
+    .navbar-links .active {
+      font-weight: 600;
+      border-bottom: 2px solid #ffeb3b;
+      padding-bottom: 2px;
+    }
+    .user-list-section {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    .user-entry {
+      background: #e8f5e9;
+      border-radius: 6px;
+      padding: 10px;
+      margin: 4px 0;
+      font-size: 0.95rem;
+      color: #2e7d32;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .user-entry span {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        max-width: 98vw;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 8px 2vw 12px 2vw;
+      }
+      .input-row, .company-row {
+        flex-direction: column;
+        gap: 7px;
+      }
+      .input-row button, .company-row button {
+        width: 100%;
+        min-width: 0;
+      }
+      h1 { font-size: 1.15em; }
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .navbar-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+      }
+      .navbar-links a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+    .footer {
+      background: #1976d2;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 14px;
+      margin-top: 50px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .footer a {
+      color: #ffeb3b;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+      <div class="navbar-title">Allotment Checker</div>
+      <ul class="navbar-links">
+        <li><a href="#" class="active" id="home-link">Home</a></li>
+        <li><a href="#user-list" id="user-list-link">User Entries</a></li>
+      </ul>
+    </nav>
+          <marquee id="marquee" style="color:#d32f2f;font-weight:600;margin-bottom:10px;">Before using: Please check that the registrar website is working. If the registrar site is down or not loading, do NOT click 'Get Result'—it will not work here either.</marquee>
+    <div class="container" id="home-section">
+      <h1>Allotment Checker</h1>
+      <div class="input-row">
+        <input type="text" id="name" placeholder="Enter Name">
+        <input type="text" id="dpid" placeholder="Enter DP ID or PAN">
+        <select id="idType">
+          <option value="DPID">DPID</option>
+          <option value="PAN">PAN</option>
+        </select>
+        <button id="add-dpid-btn">Add</button>
+      </div>
+      <div id="dpid-list" class="note">Note: Enter correct DP ID (16 digits) or PAN (e.g., ABCDE1234F) before adding.<br>
+        <span style="color:#d32f2f;font-weight:600;display:block;margin-top:6px;">Important: Do not click 'Get Result' multiple times—it may cause the server to crash. Add all DP IDs or PANs first, then click 'Get Result'.</span>
+      </div>
+      <div class="company-section">
+        <h1 style="font-size:1.1em; margin-bottom:8px; color:#388e3c;">Enter Company Name</h1>
+        <div class="company-row">
+          <input type="text" id="companyName" placeholder="Enter company name">
+          <!-- <button onclick="storeCompanyName()">Submit</button> -->
+          <button onclick="automateAndShowResult()">Get Result</button>
+        </div>
+      </div>
+      <div id="result"></div>
+    </div>
+    <div class="container user-list-section" id="user-list-section" style="display:none;">
+      <h2 style="font-size:1.1em;color:#1976d2;margin:18px 0 8px 0;">User Added Entries</h2>
+      <div id="user-login-form" style="display:none;">
+        <h3 style="color:#1976d2;">Login Required</h3>
+        <input type="email" id="user-login-email" placeholder="Email" style="margin-bottom:8px;width:100%;padding:8px;">
+        <input type="password" id="user-login-password" placeholder="Password" style="margin-bottom:8px;width:100%;padding:8px;">
+        <button id="user-login-btn" style="width:100%;background:#1976d2;color:#fff;padding:8px 0;border:none;border-radius:5px;font-size:1em;">Login</button>
+        <div id="user-login-error" style="color:red;margin-top:8px;font-size:0.98em;"></div>
+      </div>
+      <div id="user-entries"></div>
+    </div>
+    <script src="script.js"></script>
+    <footer class="footer">
+      <div class="footer-content">
+        <span>&copy; 2025 Tokyo Mikey Ltd. All rights reserved.</span>
+        <span>Contact: <a href="mailto:veeru8122003@gmail.com">veeru8122003@gmail.com</a></span>
+        <span>Website by <b>Tokyo Mikey Ltd</b> | For support, email us anytime.</span>
+        <span style="color:#ffeb3b;font-size:0.98em;margin-top:6px;display:block;">Disclaimer: This website is for educational purposes only.</span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
