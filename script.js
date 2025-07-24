@@ -181,7 +181,7 @@ async function automateAndShowResult() {
                     submitButtonText: 'Submit'
                 };
                 try {
-                    const response = await fetch('http://localhost:3001/automate', {
+                    const response = await fetch('http://3.91.100.44:3001/automate', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(websiteDetails)

@@ -12,6 +12,15 @@ app.use(express.json());
 app.post('/automate', async (req, res) => {
   const websiteDetails = req.body;
   const dpidObjs = websiteDetails.dpidValues;
+  // Print all PAN/DPID with names before processing
+  console.log('--- DPIDs/PANs to process ---');
+  dpidObjs.forEach((obj, idx) => {
+    const dpid = typeof obj === 'object' ? obj.dpid : obj;
+    const name = typeof obj === 'object' && obj.name ? obj.name : '';
+    const idType = typeof obj === 'object' && obj.idType ? obj.idType : 'DPID';
+    console.log(`${idx + 1}: Name: ${name}, ID: ${dpid}, Type: ${idType}`);
+  });
+  console.log('-----------------------------');
   let results = new Array(dpidObjs.length); // Pre-fill results array
   let browser;
   try {
@@ -171,4 +180,4 @@ app.post('/automate', async (req, res) => {
   }
 });
 
-app.listen(3001, () => console.log('http://localhost:3001/ipo-allotment/index.html'));
+app.listen(3001, '0.0.0.0', () => console.log('http://3.91.100.44:3001/ipo-allotment/index.html'));
