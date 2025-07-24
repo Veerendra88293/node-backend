@@ -4,6 +4,9 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors());
+// Serve static files under /ipo-allotment
+const path = require('path');
+app.use('/ipo-allotment', express.static(__dirname));
 app.use(express.json());
 
 app.post('/automate', async (req, res) => {
@@ -168,4 +171,4 @@ app.post('/automate', async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+app.listen(3001, () => console.log('http://localhost:3001/ipo-allotment/index.html'));

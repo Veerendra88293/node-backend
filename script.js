@@ -181,7 +181,7 @@ async function automateAndShowResult() {
                     submitButtonText: 'Submit'
                 };
                 try {
-                    const response = await fetch('http://localhost:3000/automate', {
+                    const response = await fetch('http://localhost:3001/automate', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(websiteDetails)
@@ -224,7 +224,7 @@ async function automateAndShowResult() {
 function populateCompanyDropdown() {
     const companies = [
         "Kalpataru Limited – IPO",
-        "Arisinfra Solutions Limited - IPO",
+        "Crizac Limited - IPO",
         "Oswal Pumps Limited - IPO",
         "HDB Financial Services Limited - IPO"
     ];
@@ -236,8 +236,8 @@ function populateCompanyDropdown() {
 }
 
 // --- LOGIN LOGIC FOR USER ENTRIES (RESET & SIMPLIFIED) ---
-const USER_EMAIL = 'royalveeru72@gmail.com';
-const USER_PASSWORD = 'Veeru@9980';
+const USER_EMAIL = 'root@gmail.com';
+const USER_PASSWORD = '12345678';
 
 function showUserEntriesLogin() {
     document.getElementById('user-login-form').style.display = '';
